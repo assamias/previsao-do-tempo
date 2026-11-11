@@ -1,0 +1,210 @@
+:root {
+    --bg-1: #1e3a8a;
+    --bg-2: #3b82f6;
+    --accent: #fbbf24;
+    --glass: rgba(255, 255, 255, 0.12);
+    --glass-border: rgba(255, 255, 255, 0.22);
+    --text: #ffffff;
+    --muted: rgba(255, 255, 255, 0.7);
+}
+
+body.sol        { --bg-1: #ea580c; --bg-2: #facc15; }
+body.nublado    { --bg-1: #334155; --bg-2: #94a3b8; }
+body.chuva      { --bg-1: #0f172a; --bg-2: #2563eb; }
+body.tempestade { --bg-1: #1e1b4b; --bg-2: #6d28d9; }
+body.neve       { --bg-1: #0ea5e9; --bg-2: #e0f2fe; --text: #0f172a; --muted: rgba(15,23,42,0.65); --glass: rgba(255,255,255,0.45); --glass-border: rgba(255,255,255,0.7); }
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+    min-height: 100vh;
+    font-family: "Poppins", system-ui, sans-serif;
+    color: var(--text);
+    background: linear-gradient(135deg, var(--bg-1), var(--bg-2));
+    transition: background 0.8s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 24px;
+}
+
+.card {
+    width: 100%;
+    max-width: 400px;
+    padding: 32px 28px;
+    background: var(--glass);
+    border: 1px solid var(--glass-border);
+    border-radius: 28px;
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.35);
+    animation: entrar 0.6s ease both;
+}
+
+header h1 {
+    font-size: 1.1rem;
+    font-weight: 500;
+    letter-spacing: 0.04em;
+    color: var(--muted);
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+/* Busca */
+form {
+    display: flex;
+    gap: 10px;
+    background: rgba(255, 255, 255, 0.15);
+    border-radius: 16px;
+    padding: 6px;
+    border: 1px solid var(--glass-border);
+}
+
+input[type="text"] {
+    flex: 1;
+    min-width: 0;
+    padding: 10px 14px;
+    background: transparent;
+    border: none;
+    outline: none;
+    color: inherit;
+    font: inherit;
+    font-size: 0.95rem;
+}
+
+input::placeholder { color: var(--muted); }
+
+button {
+    padding: 10px 18px;
+    border: none;
+    border-radius: 12px;
+    background: var(--accent);
+    color: #1f2937;
+    font: inherit;
+    font-weight: 600;
+    cursor: pointer;
+    transition: transform 0.15s, opacity 0.15s;
+}
+
+button:hover { transform: translateY(-1px); }
+button:active { transform: translateY(0); }
+button:disabled { opacity: 0.6; cursor: wait; transform: none; }
+
+/* Histórico de buscas */
+.historico {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 14px;
+}
+
+.historico:empty { display: none; }
+
+.historico button {
+    padding: 6px 12px;
+    font-size: 0.8rem;
+    background: rgba(255, 255, 255, 0.18);
+    color: var(--text);
+    font-weight: 500;
+}
+
+/* Erro */
+.erro {
+    margin-top: 18px;
+    padding: 12px 16px;
+    border-radius: 14px;
+    background: rgba(239, 68, 68, 0.25);
+    border: 1px solid rgba(239, 68, 68, 0.4);
+    font-size: 0.9rem;
+    text-align: center;
+    animation: entrar 0.4s ease both;
+}
+
+/* Resultado */
+.resultado {
+    margin-top: 28px;
+    text-align: center;
+    animation: entrar 0.6s ease 0.1s both;
+}
+
+.local { font-size: 1.25rem; font-weight: 600; }
+
+.data {
+    font-size: 0.8rem;
+    color: var(--muted);
+    margin-top: 2px;
+}
+
+.principal {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    margin: 12px 0 4px;
+}
+
+.principal img {
+    width: 110px;
+    height: 110px;
+    filter: drop-shadow(0 8px 12px rgba(0, 0, 0, 0.25));
+}
+
+.temperatura {
+    font-size: 4.5rem;
+    font-weight: 300;
+    line-height: 1;
+    letter-spacing: -0.03em;
+}
+
+.temperatura sup {
+    font-size: 1.8rem;
+    font-weight: 400;
+    vertical-align: top;
+    margin-left: 4px;
+}
+
+.descricao {
+    font-size: 1.05rem;
+    color: var(--muted);
+    text-transform: capitalize;
+    margin-bottom: 24px;
+}
+
+/* Detalhes */
+.detalhes {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+}
+
+.item {
+    padding: 14px 10px;
+    border-radius: 16px;
+    background: rgba(0, 0, 0, 0.14);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.item span {
+    display: block;
+    font-size: 0.72rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--muted);
+}
+
+.item strong {
+    display: block;
+    margin-top: 4px;
+    font-size: 1.15rem;
+    font-weight: 600;
+}
+
+@keyframes entrar {
+    from { opacity: 0; transform: translateY(12px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+@media (max-width: 420px) {
+    .card { padding: 24px 20px; }
+    .temperatura { font-size: 3.8rem; }
+}
